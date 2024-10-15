@@ -115,10 +115,10 @@ func checkChannelCreateReady(src, dst *ProvableChain, logger *log.RelayLogger) (
 	}
 
 	if srcID != "" && srcState == chantypes.UNINITIALIZED {
-		return false, fmt.Errorf("src channel id is given but that channel does not exist: %s", srcID);
+		return false, fmt.Errorf("src channel id is given but that channel does not exist: %s", srcID)
 	}
 	if dstID != "" && dstState == chantypes.UNINITIALIZED {
-		return false, fmt.Errorf("dst channel id is given but that channel does not exist: %s", dstID);
+		return false, fmt.Errorf("dst channel id is given but that channel does not exist: %s", dstID)
 	}
 
 	if srcState == chantypes.OPEN && dstState == chantypes.OPEN {
