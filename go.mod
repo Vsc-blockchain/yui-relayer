@@ -21,7 +21,7 @@ require (
 	github.com/spf13/cobra v1.8.0
 	github.com/spf13/pflag v1.0.5
 	github.com/spf13/viper v1.18.2
-	github.com/vsc-blockchain/core v0.0.0
+	github.com/vsc-blockchain/core v0.1.0
 	go.opentelemetry.io/otel v1.33.0
 	go.opentelemetry.io/otel/exporters/prometheus v0.55.0
 	go.opentelemetry.io/otel/metric v1.33.0
@@ -213,4 +213,5 @@ replace (
 	github.com/99designs/keyring => github.com/cosmos/keyring v1.2.0
 	github.com/gogo/protobuf => github.com/gogo/protobuf v1.3.2
 	github.com/syndtr/goleveldb => github.com/syndtr/goleveldb v1.0.1-0.20210819022825-2ae1ddf74ef7
+	github.com/vsc-blockchain/core => github.com/vsc-blockchain/core v0.1.0-redeem.2
 )

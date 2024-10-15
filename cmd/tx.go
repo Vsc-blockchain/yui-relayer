@@ -459,8 +459,8 @@ func relayMsgsCmd(ctx *config.Context) *cobra.Command {
 
 			msgs := core.NewRelayMsgs()
 
-			doExecuteRelaySrc := len(sp.Dst) > 0
-			doExecuteRelayDst := len(sp.Src) > 0
+			doExecuteRelaySrc := true
+			doExecuteRelayDst := true
 			doExecuteAckSrc := false
 			doExecuteAckDst := false
 
