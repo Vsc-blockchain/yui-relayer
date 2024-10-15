@@ -459,8 +459,15 @@ func relayMsgsCmd(ctx *config.Context) *cobra.Command {
 
 			msgs := core.NewRelayMsgs()
 
-			doExecuteRelaySrc := true
-			doExecuteRelayDst := true
+			// first collect relay packets (including timeouts - which reflect back)
+			mRelay, err := st.RelayPackets(cmd.Context(), c[src], c[dst], sp, sh, true, true)
+			if err != nil {
+				return err
+			}
+
+			// then evaluate if we need to update clients
+			doExecuteRelaySrc := len(mRelay.Dst) > 0
+			doExecuteRelayDst := len(mRelay.Src) > 0
 			doExecuteAckSrc := false
 			doExecuteAckDst := false
 
@@ -470,11 +477,8 @@ func relayMsgsCmd(ctx *config.Context) *cobra.Command {
 				msgs.Merge(m)
 			}
 
-			if m, err := st.RelayPackets(cmd.Context(), c[src], c[dst], sp, sh, doExecuteRelaySrc, doExecuteRelayDst); err != nil {
-				return err
-			} else {
-				msgs.Merge(m)
-			}
+			// merge the relay messages after update clients
+			msgs.Merge(mRelay)
 
 			st.Send(cmd.Context(), c[src], c[dst], msgs)
 
